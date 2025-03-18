@@ -5,5 +5,7 @@ const auth = require("../middleware/auth");
 
 // Routes
 router.post("/postTweet", auth.checkAccessToken, tweetController.postTweet);
+router.get("/getTweets", tweetController.getTweets);
+router.get("/getTweet/:id", auth.checkAccessToken, tweetController.getTweet);
 
 module.exports = router;

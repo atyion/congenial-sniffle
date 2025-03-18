@@ -3,8 +3,18 @@ Content-Type: application/json
 
 {
 
-    "username": "String",
+    "username": "Strddding",
     "password": "String",
-    "email": "String",
+    "email": "String@eff.com",
     "name": "String"
+}
+
+###
+POST http://localhost:8080/tweets/postTweet
+Content-Type: application/json
+
+{
+    "text": "This is a tweet",
+    "user": "67d84182d56e277baacd0796"
+    
 }

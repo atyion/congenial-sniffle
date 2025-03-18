@@ -5,7 +5,13 @@ const auth = require("../middleware/auth");
 
 // Routes
 
-router.post("/register", userController.registerUser);
+router.post(
+  "/register",
+  auth.checkValidEmail,
+  auth.checkEmailExists,
+  auth.checkUsernameExist,
+  userController.registerUser
+);
 router.post("/login", userController.loginUser);
 
 module.exports = router;
