@@ -3,7 +3,8 @@ const Tweet = require("../models/Tweets");
 exports.postTweet = async (req, res) => {
   try {
     const { text } = req.body;
-    const userId = req.user.id; // Ensure this is correctly set as an ObjectId
+    const userId = req.userID; // Ensure this is correctly set as an ObjectId
+
     console.log(userId);
 
     const newTweet = new Tweet({
@@ -37,6 +38,26 @@ exports.getTweet = async (req, res) => {
       "username"
     );
     res.status(200).json({ tweet });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+exports.deleteTweet = async (req, res) => {
+  try {
+    const userId = req.userID;
+    const tweet = await Tweet.findById(req.params.id);
+
+    if (!tweet) {
+      return res.status(404).json({ error: "Tweet not found" });
+    }
+
+    if (tweet.user.toString() !== userId) {
+      return res.status(403).json({ error: "Unauthorized action" });
+    }
+
+    await Tweet.findByIdAndDelete(req.params.id); // <-- CORRETTO
+    res.status(200).json({ message: "Tweet deleted successfully" });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

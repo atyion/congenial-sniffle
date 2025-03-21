@@ -3,9 +3,9 @@ Content-Type: application/json
 
 {
 
-    "username": "Strddding",
+    "username": "Strdddffing",
     "password": "String",
-    "email": "String@eff.com",
+    "email": "String@effff.com",
     "name": "String"
 }
 
@@ -15,6 +15,7 @@ Content-Type: application/json
 
 {
     "text": "This is a tweet",
-    "user": "67d84182d56e277baacd0796"
+    "user": "67d882486308a764245f6e9d",
+    "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjdkODgyNDg2MzA4YTc2NDI0NWY2ZTlkIn0sImlhdCI6MTc0MjI0MjM3NiwiZXhwIjoxNzQyODQ3MTc2fQ.8ibEWn0NkvMdZY0y9_7yXC9tpbOhmog5gfdaH482c50"
     
 }
