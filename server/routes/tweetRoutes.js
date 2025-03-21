@@ -31,4 +31,5 @@ router.delete(
   auth.checkAccessToken,
   tweetController.deleteComment
 );
+router.get("/getUserTweets/:id", tweetController.getUserTweets);
 module.exports = router;
