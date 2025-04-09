@@ -228,3 +228,19 @@ exports.getUserTweets = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+
+exports.isTweetLiked = async (req, res) => {
+  try {
+    const userId = req.userID;
+    const tweetId = req.params.id;
+
+    const likedTweet = await LikedTweet.findOne({
+      userID: userId,
+      tweetID: tweetId,
+    });
+
+    res.status(200).json({ isLiked: !!likedTweet });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};

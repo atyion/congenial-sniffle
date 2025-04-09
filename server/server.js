@@ -9,7 +9,12 @@ const app = express();
 require("dotenv").config();
 
 // Middleware
-app.use(cors());
+app.use(
+  cors({
+    origin: "http://localhost:5173", // The origin of your Vite app
+    credentials: true, // Allow cookies and credentials to be sent
+  })
+);
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(

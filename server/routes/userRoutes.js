@@ -13,5 +13,5 @@ router.post(
   userController.registerUser
 );
 router.post("/login", userController.loginUser);
-
+router.get("/refresh", userController.checkRefreshToken);
 module.exports = router;

@@ -32,4 +32,9 @@ router.delete(
   tweetController.deleteComment
 );
 router.get("/getUserTweets/:id", tweetController.getUserTweets);
+router.get(
+  "/isTweetLiked/:id",
+  auth.checkAccessToken,
+  tweetController.isTweetLiked
+);
 module.exports = router;

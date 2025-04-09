@@ -88,3 +88,17 @@ exports.refreshTokens = (req, res) => {
     return res.status(200).json({ message: "new cookies baby" });
   });
 };
+
+exports.checkRefreshToken = (req, res) => {
+  const token = req.cookies.refreshToken;
+  if (!token) return res.status(401).json({ message: "Not authenticated" });
+
+  try {
+    // Use the same secret used when generating the refresh token.
+    const payload = jwt.verify(token, process.env.JWT_REFRESH_SECRET);
+    return res.json({ message: "Session valid", user: payload.user });
+  } catch (err) {
+    console.error("Token verification error:", err);
+    return res.status(401).json({ message: "Invalid token" });
+  }
+};
