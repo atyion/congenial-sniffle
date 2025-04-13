@@ -102,3 +102,19 @@ exports.checkRefreshToken = (req, res) => {
     return res.status(401).json({ message: "Invalid token" });
   }
 };
+
+exports.getUserInfo = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const user = await User.findById(id, "bio username name");
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    return res.status(200).json(user);
+  } catch (err) {
+    console.error(err.message);
+    return res.status(500).json({ message: "Server Error" });
+  }
+};

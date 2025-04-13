@@ -14,4 +14,5 @@ router.post(
 );
 router.post("/login", userController.loginUser);
 router.get("/refresh", userController.checkRefreshToken);
+router.get("/info/:id", userController.getUserInfo);
 module.exports = router;

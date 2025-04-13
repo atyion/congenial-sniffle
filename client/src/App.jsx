@@ -4,6 +4,9 @@ import LoginPage from "./LoginPage";
 import TweetDetail from "./TweetDetail";
 import TweetList from "./TweetList";
 import UserTweets from "./UserTweets"; // Import the new component
+import Navbar from "./NavBar"; // Import the Navbar component
+import HomePage from "./HomePage"; // Import the HomePage component
+import PostTweet from "./PostTweet"; // Import the PostTweet component
 
 function App() {
   return (
@@ -15,6 +18,7 @@ function App() {
         <Route path="/tweets" element={<TweetList />} />
         {/* New route for viewing a user's tweets */}
         <Route path="/user/:id/tweets" element={<UserTweets />} />
+        <Route path="/" element={<HomePage />} />
       </Routes>
     </BrowserRouter>
   );

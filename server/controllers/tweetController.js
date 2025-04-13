@@ -26,7 +26,10 @@ exports.postTweet = async (req, res) => {
 
 exports.getTweets = async (req, res) => {
   try {
-    const tweets = await Tweet.find().populate("user", "username").limit(10);
+    const tweets = await Tweet.find()
+      .sort({ createdAt: -1 })
+      .populate("user", "username")
+      .limit(10);
     res.status(200).json({ tweets });
   } catch (error) {
     res.status(500).json({ error: error.message });
