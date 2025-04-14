@@ -85,18 +85,17 @@ function RegisterPage() {
         <h2>Register</h2>
         <form onSubmit={handleSubmit}>
           <input
-            name="username"
-            placeholder="Username"
-            value={form.username}
+            name="name"
+            placeholder="Full Name"
+            value={form.name}
             onChange={handleChange}
             required
           />
           <br />
           <input
-            type="password"
-            name="password"
-            placeholder="Password"
-            value={form.password}
+            name="username"
+            placeholder="Username"
+            value={form.username}
             onChange={handleChange}
             required
           />
@@ -111,12 +110,23 @@ function RegisterPage() {
           />
           <br />
           <input
-            name="name"
-            placeholder="Full Name"
-            value={form.name}
+            type="password"
+            name="password"
+            placeholder="Password"
+            value={form.password}
             onChange={handleChange}
             required
           />
+          <br />
+          <input
+            type="bio"
+            name="bio"
+            placeholder="Bio"
+            value={form.bio}
+            onChange={handleChange}
+            required
+          />
+          <br />
           <br />
           <button type="submit">Register</button>
         </form>

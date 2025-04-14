@@ -5,6 +5,7 @@ function TweetList() {
   const [tweets, setTweets] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  var [likes, setLikes] = useState();
 
   // For demo purposes, we assume the user is authenticated.
   // In a real app, replace this with a value from your auth context.
@@ -13,7 +14,6 @@ function TweetList() {
   useEffect(() => {
     setLoading(true);
     setError("");
-
     fetch("http://localhost:8080/tweets/getTweets", {
       method: "GET",
       headers: {
@@ -31,6 +31,8 @@ function TweetList() {
         return res.json();
       })
       .then((data) => {
+        data.tweets[0].likes = likes;
+
         setTweets(data.tweets);
         setLoading(false);
       })

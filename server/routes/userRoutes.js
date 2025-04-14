@@ -15,4 +15,6 @@ router.post(
 router.post("/login", userController.loginUser);
 router.get("/refresh", userController.checkRefreshToken);
 router.get("/info/:id", userController.getUserInfo);
+router.post("/logout", userController.logoutUser);
+
 module.exports = router;

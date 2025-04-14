@@ -26,6 +26,22 @@ const userSchema = new mongoose.Schema(
       type: Date,
       default: Date.now,
     },
+    bio: {
+      type: String,
+      default: "",
+    },
+    followers: {
+      type: Number,
+      default: 0,
+    },
+    posts: {
+      type: Number,
+      default: 0,
+    },
+    likes: {
+      type: Number,
+      default: 0,
+    },
   },
   { collection: "Users" }
 );

@@ -1,13 +1,12 @@
 const Tweet = require("../models/Tweets");
 const LikedTweet = require("../models/LikedTweets");
 const Comment = require("../models/CommentTweets");
+const jwt = require("jsonwebtoken");
 
 exports.postTweet = async (req, res) => {
   try {
     const { text } = req.body;
     const userId = req.userID; // Ensure this is correctly set as an ObjectId
-
-    console.log(userId);
 
     const newTweet = new Tweet({
       text,
@@ -214,8 +213,25 @@ exports.deleteComment = async (req, res) => {
 };
 
 exports.getUserTweets = async (req, res) => {
+  var userId;
   try {
-    const userId = req.params.id;
+    const refreshToken = req.cookies.refreshToken;
+    if (!refreshToken) {
+      return res
+        .status(403)
+        .json({ message: "No refresh token, please login" });
+    }
+
+    jwt.verify(refreshToken, process.env.JWT_REFRESH_SECRET, (err, decoded) => {
+      if (err)
+        return res.status(403).json({ message: "Invalid refresh token" });
+
+      userId = decoded.user.id;
+
+      // Set the new refresh token in cookies
+
+      // Send the new access token to the client
+    });
 
     const tweets = await Tweet.find({ user: userId }).populate(
       "user",

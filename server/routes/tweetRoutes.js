@@ -31,7 +31,7 @@ router.delete(
   auth.checkAccessToken,
   tweetController.deleteComment
 );
-router.get("/getUserTweets/:id", tweetController.getUserTweets);
+router.get("/getUserTweets", tweetController.getUserTweets);
 router.get(
   "/isTweetLiked/:id",
   auth.checkAccessToken,

@@ -73,7 +73,7 @@ function LoginPage() {
     >
       <div
         style={{
-          border: "2px solid black",
+          border: "1.5px solid black",
           padding: "1rem",
           width: "fit-content",
         }}
@@ -88,6 +88,7 @@ function LoginPage() {
             required
           />
           <br />
+          <br />
           <input
             type="password"
             name="password"
@@ -97,7 +98,9 @@ function LoginPage() {
             required
           />
           <br />
+          <br />
           <button type="submit">Login</button>
+          <button type="submit">Register</button>
         </form>
         {success && <p style={{ color: "green" }}>{success}</p>}
         {error && <p style={{ color: "red" }}>{error}</p>}
