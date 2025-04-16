@@ -238,10 +238,6 @@ exports.getUserTweets = async (req, res) => {
       "username"
     );
 
-    if (!tweets.length) {
-      return res.status(404).json({ error: "No tweets found for this user" });
-    }
-
     res.status(200).json({ tweets });
   } catch (error) {
     res.status(500).json({ error: error.message });

@@ -5,7 +5,7 @@ const { generateAccessToken, generateRefreshToken } = require("../utils/auth");
 require("dotenv").config();
 
 exports.registerUser = async (req, res) => {
-  const { username, email, password, name } = req.body;
+  const { username, email, password, name, bio } = req.body;
 
   try {
     const salt = await bcrypt.genSalt(10);
@@ -16,6 +16,7 @@ exports.registerUser = async (req, res) => {
       email,
       password: hashedPassword,
       name,
+      bio,
     });
 
     await user.save();

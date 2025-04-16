@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import LikeButton from "./LikeButton";
 
-function TweetList() {
+function ProfileTweetList() {
   const [tweets, setTweets] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -15,11 +15,14 @@ function TweetList() {
   useEffect(() => {
     setLoading(true);
     setError("");
-    fetch("http://localhost:8080/tweets/getTweets", {
+    // Fetch profile tweets instead of all tweets
+    fetch("http://localhost:8080/tweets/getUserTweets/", {
       method: "GET",
+      credentials: "include",
       headers: {
         "Content-Type": "application/json",
       },
+      // Uncomment if your backend requires cookies:
       // credentials: "include",
     })
       .then((res) => {
@@ -44,7 +47,7 @@ function TweetList() {
       });
   }, [likes]);
 
-  // Function to format date in a more readable way
+  // Function to format the date in a more readable way
   const formatDate = (dateString) => {
     const date = new Date(dateString);
     const now = new Date();
@@ -66,10 +69,9 @@ function TweetList() {
     });
   };
 
-  // Function to get initials from username
-  const getInitials = (username) => {
-    return username ? username.substring(0, 2).toUpperCase() : "??";
-  };
+  // Function to get initials from a username
+  const getInitials = (username) =>
+    username ? username.substring(0, 2).toUpperCase() : "??";
 
   return (
     <div className="tweet-list-container">
@@ -246,4 +248,4 @@ function TweetList() {
   );
 }
 
-export default TweetList;
+export default ProfileTweetList;

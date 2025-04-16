@@ -1,7 +1,7 @@
 import React from "react";
 
 // Use a default image if the user has not set one
-const defaultProfileImage = "https://via.placeholder.com/100";
+const defaultProfileImage = "./defaultProfileImage.jpg"; // Replace with your default image path
 
 function ProfileHeader({ user, onEditProfile }) {
   // A few checks just in case the user object is null or undefined

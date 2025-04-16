@@ -7,6 +7,7 @@ function HomePage() {
   return (
     <>
       <Navbar />
+
       <div style={{ maxWidth: "600px", margin: "auto", padding: "1rem" }}>
         <PostTweet />
         <TweetList />

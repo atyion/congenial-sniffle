@@ -21,6 +21,7 @@ function App() {
         {/* New route for viewing a user's tweets */}
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/" element={<HomePage />} />
+        <Route path="/post" element={<PostTweet />} />
       </Routes>
     </BrowserRouter>
   );

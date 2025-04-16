@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ProfileHeader from "./ProfileHeader";
 import PostTweet from "./PostTweet";
-import TweetList from "./TweetList";
+import TweetList from "./ProfileTweetList";
 import Navbar from "./NavBar"; // Assuming you have a NavBar component
 
 function ProfilePage() {
