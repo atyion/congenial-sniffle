@@ -4,7 +4,7 @@ const { execSync } = require("child_process");
 const opts = { stdio: "inherit" };
 
 console.log("\n👉  Generating .env file…");
-execSync("node server/scripts/generateEnv.js", opts);
+execSync("node server/generateEnv.js", opts);
 
 console.log("\n👉  Installing server dependencies…");
 execSync("npm install", { cwd: "server", ...opts });

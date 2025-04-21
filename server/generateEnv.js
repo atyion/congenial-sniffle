@@ -14,7 +14,7 @@ const envContent = `JWT_SECRET=${jwtSecret}
 JWT_REFRESH_SECRET=${jwtRefreshSecret}
 `;
 
-fs.writeFile(".env", envContent, (err) => {
+fs.writeFile("./server/.env", envContent, (err) => {
   if (err) {
     console.error("Error writing .env file:", err);
   } else {
