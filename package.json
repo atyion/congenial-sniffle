@@ -1,0 +1,16 @@
+{
+  "name": "congenial-sniffle",
+  "version": "1.0.0",
+  "main": "setup.js",
+  "scripts": {
+    "setup": "node setup.js",
+    "dev": "npx concurrently \"npm run dev --prefix server\" \"npm run dev --prefix client\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}
