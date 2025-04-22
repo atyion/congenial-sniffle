@@ -13,7 +13,7 @@ router.delete(
   tweetController.deleteTweet
 );
 router.put("/likeTweet/:id", auth.checkAccessToken, tweetController.likeTweet);
-router.get("/getLikedTweets", tweetController.getTweetLikesCount);
+router.get("/getLikedTweets/:id", tweetController.getTweetLikesCount);
 router.delete(
   "/unlikeTweet/:id",
   auth.checkAccessToken,

@@ -118,7 +118,7 @@ exports.unlikeTweet = async (req, res) => {
 
 exports.getTweetLikesCount = async (req, res) => {
   try {
-    const tweetId = req.body.id;
+    const tweetId = req.params.id;
 
     const likeCount = await LikedTweet.countDocuments({ tweetID: tweetId });
 

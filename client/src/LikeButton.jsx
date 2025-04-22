@@ -6,29 +6,35 @@ function LikeButton({ tweetId, isAuthenticated }) {
   const [liked, setLiked] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const [likeCount, setLikeCount] = useState(0); // Added like count
+  const [likeCount, setLikeCount] = useState(0);
 
-  // Check if the tweet is already liked when the component mounts
+  // Check if the tweet is already liked and fetch like count when the component mounts
   useEffect(() => {
-    if (!isAuthenticated) return;
+    if (!tweetId || !isAuthenticated) return;
 
-    fetch(`http://localhost:8080/tweets/isTweetLiked/${tweetId}`, {
+    console.log(
+      "Fetching like count from:",
+      `http://localhost:8080/tweets/getLikedTweets/${tweetId}`
+    );
+
+    fetch(`http://localhost:8080/tweets/getLikedTweets/${tweetId}`, {
       method: "GET",
-      credentials: "include", // Include cookies for auth
-      headers: {
-        "Content-Type": "application/json",
-      },
+      credentials: "include",
     })
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) throw new Error("Network response was not OK");
+        return res.json();
+      })
       .then((data) => {
-        setLiked(data.isLiked);
-        // If your API returns like count, you can set it here
-        if (data.likeCount !== undefined) {
+        console.log("Response payload:", data);
+        if (typeof data.likeCount === "number") {
           setLikeCount(data.likeCount);
+        } else {
+          console.warn("Server didn’t return a numeric likeCount");
         }
       })
       .catch((err) => {
-        console.error("Error checking like status:", err);
+        console.error("Fetch error:", err);
       });
   }, [tweetId, isAuthenticated]);
 
@@ -36,7 +42,7 @@ function LikeButton({ tweetId, isAuthenticated }) {
   const toggleLike = async () => {
     if (!isAuthenticated) {
       setError("You must log in to like tweets.");
-      setTimeout(() => setError(""), 3000); // Clear error after 3 seconds
+      setTimeout(() => setError(""), 3000);
       return;
     }
 
@@ -44,16 +50,14 @@ function LikeButton({ tweetId, isAuthenticated }) {
     setError("");
 
     if (!liked) {
-      // Like the tweet via PUT
+      // Like the tweet
       try {
         const response = await fetch(
           `http://localhost:8080/tweets/likeTweet/${tweetId}`,
           {
             method: "PUT",
             credentials: "include",
-            headers: {
-              "Content-Type": "application/json",
-            },
+            headers: { "Content-Type": "application/json" },
           }
         );
         const data = await response.json();
@@ -64,26 +68,23 @@ function LikeButton({ tweetId, isAuthenticated }) {
         setLikeCount((prev) => prev + 1);
       } catch (err) {
         setError(err.message);
-        setTimeout(() => setError(""), 3000); // Clear error after 3 seconds
+        setTimeout(() => setError(""), 3000);
       } finally {
         setLoading(false);
       }
     } else {
-      // Unlike the tweet via DELETE
+      // Unlike the tweet
       try {
         const response = await fetch(
           `http://localhost:8080/tweets/unlikeTweet/${tweetId}`,
           {
             method: "DELETE",
             credentials: "include",
-            headers: {
-              "Content-Type": "application/json",
-            },
+            headers: { "Content-Type": "application/json" },
           }
         );
         const data = await response.json();
         if (!response.ok) {
-          // Here, if the error is "Like not found", assume the like is already removed.
           if (data.error === "Like not found") {
             setLiked(false);
             setLikeCount((prev) => Math.max(0, prev - 1));
@@ -96,7 +97,7 @@ function LikeButton({ tweetId, isAuthenticated }) {
         }
       } catch (err) {
         setError(err.message);
-        setTimeout(() => setError(""), 3000); // Clear error after 3 seconds
+        setTimeout(() => setError(""), 3000);
       } finally {
         setLoading(false);
       }
