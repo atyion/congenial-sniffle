@@ -31,7 +31,7 @@ This is a full-stack Twitter clone built with an **Express** backend, **React** 
    git clone https://github.com/atyion/congenial-sniffle.git
    ```
 2. Install MongoDB:
- ```bash
+   ```bash
    https://www.mongodb.com/try/download/community
    ```
 
@@ -40,10 +40,10 @@ This is a full-stack Twitter clone built with an **Express** backend, **React** 
    cd congenial-sniffle
    ```
 4. (JUST FOR MAC)
-```bash
+   ```bash
    chmod +x node_modules/.bin/concurrently
    ```
-```bash
+   ```bash
    chmod +x server/node_modules/.bin/nodemon
    ```
 5. Run the setup:
