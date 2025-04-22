@@ -2,7 +2,7 @@
   <img src="https://github.com/user-attachments/assets/3229357e-b7ff-4f23-bf31-4ea9a7648347" width="250" height="250" />
 </p>
 
-# 🐦 **The Not-So-Official Twitter Clone** 🕵️‍♂️
+# 🐦 **Twitter clone. Twitter wannabe for friends** 🕵️‍♂️
 
 Welcome to **The Twitter Clone**, where the tweets are free, the posts are endless, and the birds are... well, pretty sneaky. 😏
 
