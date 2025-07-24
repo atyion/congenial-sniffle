@@ -26,6 +26,8 @@ This is a full-stack Twitter clone built with an **Express** backend, **React** 
 
 ## 🌍 How to Get Started
 
+⚠️ Note: The project currently works on my setup, but some users may experience issues getting it started. I'm actively working on improving compatibility and setup instructions.
+
 1. Clone this repo:
    ```bash
    git clone https://github.com/atyion/congenial-sniffle.git
